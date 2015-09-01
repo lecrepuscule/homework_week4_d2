@@ -11,6 +11,11 @@ describe Van do
     working_num.times {station.dock(Bike.new)}
   end
 
+  def take_bikes_from garage
+    5.times {garage.accept(Bike.new)}
+    van.load_fixed_bikes(garage)
+  end
+
   let(:van) {Van.new(capacity: 10)}
   let(:bike) {Bike.new}
   let(:station) {DockingStation.new(capacity: 20)}
@@ -58,22 +63,17 @@ describe Van do
   end
 
   it "should be able to load working bikes at a garage" do 
-    5.times {garage.accept(Bike.new)}
-    puts garage.inspect
-    van.load_fixed_bikes(garage)
+    take_bikes_from garage
     expect(van.bike_count).to eq 5
   end 
 
   it "should be able to take away working bikes from a garage" do 
-    5.times {garage.accept(Bike.new)}
-    puts garage.inspect
-    van.load_fixed_bikes(garage)
+    take_bikes_from garage
     expect(garage.bike_count).to eq 0
   end 
 
   it "should be able to unload working bikes at a station" do
-    5.times {garage.accept(Bike.new)}
-    van.load_fixed_bikes(garage)
+    take_bikes_from garage
     van.unload_working_bikes(station)
     expect(van.bike_count).to eq 0
   end
