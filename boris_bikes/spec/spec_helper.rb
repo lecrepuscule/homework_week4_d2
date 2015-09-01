@@ -1,4 +1,4 @@
-require_relative "../lib/bike.rb"
+require_relative "../lib/bike"
 require_relative "../lib/docking_station"
 require_relative "../lib/van"
 require_relative "../lib/garage"
