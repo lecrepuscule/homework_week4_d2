@@ -12,7 +12,7 @@ describe Van do
   end
 
   def take_bikes_from garage
-    5.times {garage.accept(Bike.new)}
+    5.times {garage.dock(Bike.new)}
     van.load_bikes(garage)
   end
 
@@ -27,7 +27,7 @@ describe Van do
 
   it "should be able to load up broken bikes at a station" do
     dock_various_bikes(station,8,10)
-    puts van.load_bikes(station).inspect
+    van.load_bikes(station)
     expect(van.bike_count).to eq 8
   end
 

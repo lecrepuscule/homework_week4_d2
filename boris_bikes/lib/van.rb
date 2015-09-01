@@ -25,7 +25,7 @@ class Van
 
   def unload_broken_bikes garage
     @bikes.select{|bike| bike.broken?}.each do |bike|
-      garage.accept(bike)
+      garage.dock(bike)
       @bikes.delete(bike)
     end
   end
@@ -40,6 +40,5 @@ class Van
   def full?
     bike_count >= @capacity
   end
-
 
 end

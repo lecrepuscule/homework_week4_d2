@@ -11,7 +11,7 @@ class Garage
     @bikes.count
   end
 
-  def accept bike
+  def dock bike
     raise "Garage is full" if full?
     @bikes << bike
   end
