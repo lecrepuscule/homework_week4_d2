@@ -14,6 +14,7 @@ describe Van do
   let(:van) {Van.new(capacity: 10)}
   let(:bike) {Bike.new}
   let(:station) {DockingStation.new(capacity: 20)}
+  let(:garage) {Garage.new}
 
   it "should be created with no bikes on it" do
     expect(van.bike_count).to eq 0
@@ -38,8 +39,22 @@ describe Van do
   end
 
   it "should stop loading bikes when reaches capacity" do
-    dock_various_bikes(station,11,9)
+    dock_various_bikes(station,12,8)
     expect{van.load_broken_bikes(station)}.to raise_error "Van is full"
+  end
+
+  it "should be able to unload broken bikes at a garage" do
+    dock_various_bikes(station,10,10)
+    van.load_broken_bikes(station)
+    van.unload_broken_bikes(garage)
+    expect(van.bike_count).to eq 0
+  end
+
+  it "should be able to put broken bikes into a garage" do
+    dock_various_bikes(station,10,10)
+    van.load_broken_bikes(station)
+    van.unload_broken_bikes(garage)
+    expect(garage.bike_count).to eq 10
   end
 
 end

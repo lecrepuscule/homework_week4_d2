@@ -1,5 +1,6 @@
 require_relative "docking_station"
 require_relative "bike"
+require_relative "garage"
 
 class Van
 
@@ -19,6 +20,13 @@ class Van
       raise "Van is full" if full?
       @bikes << bike
       station.release(bike)
+    end
+  end
+
+  def unload_broken_bikes garage
+    @bikes.select{|bike| bike.broken?}.each do |bike|
+      garage.accept(bike)
+      @bikes.delete(bike)
     end
   end
 

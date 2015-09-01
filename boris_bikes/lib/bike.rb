@@ -1,5 +1,7 @@
 class Bike
 
+  attr_writer :broken
+
   def initialize
     @broken = false
   end
@@ -10,10 +12,6 @@ class Bike
 
   def break
     @broken = true
-  end
-
-  def fix
-    @broken = false
   end
   
 end
