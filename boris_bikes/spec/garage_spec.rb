@@ -30,13 +30,12 @@ describe Garage do
     expect{garage.accept(bike)}.to raise_error "Garage is full"
   end
 
-  it "should be able to list out all fixed bikes" do
+  it "should be able to list out all fixed bikes for pick-up" do
     working_bike, broken_bike = Bike.new, Bike.new
     broken_bike.break
     garage.accept(working_bike)
     garage.accept(broken_bike)
-    puts garage.fixed_bikes.inspect
-    expect(garage.fixed_bikes).to eq [working_bike]
+    expect(garage.bikes_for_pickup).to eq [working_bike]
   end
 
   it "should be able to release a bike" do

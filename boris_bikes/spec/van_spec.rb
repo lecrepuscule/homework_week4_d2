@@ -13,7 +13,7 @@ describe Van do
 
   def take_bikes_from garage
     5.times {garage.accept(Bike.new)}
-    van.load_fixed_bikes(garage)
+    van.load_bikes(garage)
   end
 
   let(:van) {Van.new(capacity: 10)}

@@ -24,7 +24,7 @@ class Garage
     bike_count >= @capacity
   end
 
-  def fixed_bikes
+  def bikes_for_pickup
     @bikes.reject{|bike| bike.broken?}
   end
 
