@@ -23,6 +23,14 @@ class Van
     end
   end
 
+  def load_fixed_bikes garage
+    garage.fixed_bikes.each do |bike| 
+      raise "Van is full" if full?
+      @bikes << bike
+      garage.release(bike)
+    end
+  end
+
   def unload_broken_bikes garage
     @bikes.select{|bike| bike.broken?}.each do |bike|
       garage.accept(bike)

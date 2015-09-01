@@ -57,4 +57,18 @@ describe Van do
     expect(garage.bike_count).to eq 10
   end
 
+  it "should be able to load working bikes at a garage" do 
+    5.times {garage.accept(Bike.new)}
+    puts garage.inspect
+    van.load_fixed_bikes(garage)
+    expect(van.bike_count).to eq 5
+  end 
+
+  it "should be able to take away working bikes from a garage" do 
+    5.times {garage.accept(Bike.new)}
+    puts garage.inspect
+    van.load_fixed_bikes(garage)
+    expect(garage.bike_count).to eq 0
+  end 
+
 end
