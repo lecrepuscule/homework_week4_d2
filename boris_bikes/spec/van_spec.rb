@@ -71,4 +71,12 @@ describe Van do
     expect(garage.bike_count).to eq 0
   end 
 
+  it "should be able to unload working bikes at a station" do
+    5.times {garage.accept(Bike.new)}
+    van.load_fixed_bikes(garage)
+    van.unload_working_bikes(station)
+    expect(van.bike_count).to eq 0
+  end
+
+
 end
