@@ -28,7 +28,7 @@ class DockingStation
     @bikes.reject{|bike| bike.broken?}
   end
 
-  def broken_bikes
+  def bikes_for_pickup
     @bikes.select{|bike| bike.broken?}
   end
 

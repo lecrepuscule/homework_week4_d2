@@ -27,37 +27,37 @@ describe Van do
 
   it "should be able to load up broken bikes at a station" do
     dock_various_bikes(station,8,10)
-    puts van.load_broken_bikes(station).inspect
+    puts van.load_bikes(station).inspect
     expect(van.bike_count).to eq 8
   end
 
   it "should take away the broken bikes at a station" do
     dock_various_bikes(station,8,10)
-    van.load_broken_bikes(station)
+    van.load_bikes(station)
     expect(station.bike_count).to eq 10
   end
 
   it "should know when the van reaches capacity" do
     dock_various_bikes(station,10,10)
-    van.load_broken_bikes(station)
+    van.load_bikes(station)
     expect(van.full?).to be true
   end
 
   it "should stop loading bikes when reaches capacity" do
     dock_various_bikes(station,12,8)
-    expect{van.load_broken_bikes(station)}.to raise_error "Van is full"
+    expect{van.load_bikes(station)}.to raise_error "Van is full"
   end
 
   it "should be able to unload broken bikes at a garage" do
     dock_various_bikes(station,10,10)
-    van.load_broken_bikes(station)
+    van.load_bikes(station)
     van.unload_broken_bikes(garage)
     expect(van.bike_count).to eq 0
   end
 
   it "should be able to put broken bikes into a garage" do
     dock_various_bikes(station,10,10)
-    van.load_broken_bikes(station)
+    van.load_bikes(station)
     van.unload_broken_bikes(garage)
     expect(garage.bike_count).to eq 10
   end

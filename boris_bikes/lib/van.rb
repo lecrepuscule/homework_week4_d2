@@ -15,11 +15,11 @@ class Van
     @bikes.count
   end
 
-  def load_broken_bikes docking_station
-    docking_station.broken_bikes.each do |bike| 
+  def load_bikes source
+    source.bikes_for_pickup.each do |bike| 
       raise "Van is full" if full?
       @bikes << bike
-      docking_station.release(bike)
+      source.release(bike)
     end
   end
 
