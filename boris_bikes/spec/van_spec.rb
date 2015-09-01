@@ -47,13 +47,13 @@ describe Van do
 
   it "should be able to unload broken bikes at a garage" do
     take_bikes_from(station, 6, 8)
-    van.unload_broken_bikes(garage)
+    van.unload_bikes(garage)
     expect(van.bike_count).to eq 0
   end
 
   it "should be able to put broken bikes into a garage" do
     take_bikes_from(station, 2, 5)
-    van.unload_broken_bikes(garage)
+    van.unload_bikes(garage)
     expect(garage.bike_count).to eq 2
   end
 
@@ -69,9 +69,8 @@ describe Van do
 
   it "should be able to unload working bikes at a station" do
     take_bikes_from(garage, 12, 7)
-    van.unload_working_bikes(station)
+    van.unload_bikes(station)
     expect(van.bike_count).to eq 0
   end
-
 
 end

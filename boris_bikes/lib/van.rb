@@ -23,16 +23,16 @@ class Van
     end
   end
 
-  def unload_broken_bikes garage
-    @bikes.select{|bike| bike.broken?}.each do |bike|
-      garage.dock(bike)
-      @bikes.delete(bike)
+  def unload_bikes destination
+    if destination.is_a? DockingStation
+      bikes_to_unload = @bikes.reject{|bike| bike.broken?}
+    elsif destination.is_a? Garage
+      bikes_to_unload = @bikes.select{|bike| bike.broken?}
+    else
+      raise "Unknown destination"
     end
-  end
-
-  def unload_working_bikes docking_station
-    @bikes.reject{|bike| bike.broken?}.each do |bike|
-      docking_station.dock(bike)
+    bikes_to_unload.each do |bike|
+      destination.dock(bike)
       @bikes.delete(bike)
     end
   end
