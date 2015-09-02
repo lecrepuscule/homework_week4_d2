@@ -73,4 +73,9 @@ describe Van do
     expect(van.bike_count).to eq 0
   end
 
+  it "should be able to put working bikes into a station" do
+    take_bikes_from(garage, 12, 7)
+    van.unload_bikes(station)
+    expect(station.bike_count).to eq 7
+  end
 end
